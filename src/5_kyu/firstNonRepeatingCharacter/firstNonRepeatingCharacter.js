@@ -1,19 +1,15 @@
 function firstNonRepeatingLetter(str) {
-  const arr = str.toLowerCase().split('');
-
-  const filteredArr = arr.reduce((acc, value, index) => {
-    if (arr.indexOf(value) === arr.lastIndexOf(value)) {
-      acc.push(index);
+  const index = str.toLowerCase().split('').reduceRight((acc, val, index, arr) => {
+    if (arr.indexOf(val) === arr.lastIndexOf(val)) {
+      acc = index;
     }
     return acc;
-  }, [])
-
-  const index = filteredArr[0];
-
-  return filteredArr.length === 0 ? '' : str.split('')[index];
+  }, '')
+  return str[index] === undefined ? '' : str[index];
 }
 
-firstNonRepeatingLetter('a')//, 'a');
-firstNonRepeatingLetter('stress')//, 't');
-firstNonRepeatingLetter('sTretss')//, 'r');
-firstNonRepeatingLetter('abba')//, 'e');
+console.log(firstNonRepeatingLetter('a'))//, 'a');
+console.log(firstNonRepeatingLetter('stress'))//, 't');
+console.log(firstNonRepeatingLetter('sTretss'))//, 'r');
+console.log(firstNonRepeatingLetter('abba'))//);
+console.log(firstNonRepeatingLetter('sTreSS'))//);
